@@ -1,0 +1,69 @@
+Q1]
+
+%{
+        int chars,lines;
+%}
+
+%%
+\n      {lines++;}
+[A-Za-z]        {chars++;printf("%s\n",yytext);}
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main(int argc,char *argv[])
+{
+        yyin=fopen(argv[1],"r");
+        yylex();
+        fclose(yyin);
+        printf("\nNumber of lines : %d\nNumber of characters : %d\n",lines,chars);
+        return 0;
+}
+
+Q2]
+
+%{
+        int count=0;
+%}
+%%
+^[a-zA-Z_][a-zA-Z0-9_]* printf("VALID IDENTIFIER \n");
+^[0-9]+ printf("NUMERICAL CONSTANT \n");
+^[^a-zA-Z_][a-zA-Z0-9]* printf("INVALID IDENTIFIER\n");
+%%
+
+int yywrap(void)
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
+
+Q4]
+
+digit [0-9]
+
+%{
+
+        int count=0;
+%}
+%%
+^{digit}+(.{digit}+)?(E)?({digit}+)?    printf("VALID EXPO\n");
+
+%%
+int yywrap()
+{
+        return 1;
+}
+
+int main()
+{
+        yylex();
+        return 0;
+}
