@@ -134,3 +134,41 @@ int main()
 {
         yylex();
 }
+
+
+
+
+
+
+.       any character except newline
+\n      newline
+*       zero or more copies of the preceding expression
++       one or more copies of the preceding expression
+?       zero or one copy of the preceding expression
+^       beginning of line
+$       end of line
+a|b     a or b
+(ab)+   one or more copies of ab (grouping)
+"a+b"   literal "a+b" (C escapes still work)
+[]      character class
+
+
+
+abc           abc
+abc*          ab abc abcc abccc ...
+abc+          abc abcc abccc ...
+a(bc)+        abc abcbc abcbcbc ...
+a(bc)?        a abc
+[abc]         one of: a, b, c
+[a-z]         any letter, a-z
+[a\-z]        one of: a, -, z
+[-az]         one of: -, a, z
+[A-Za-z0-9]+  one or more alphanumeric characters
+[ \t\n]+      whitespace
+[^ab] 	      anything except: a, b
+[a^b] 	      one of: a, ^, b
+[a|b] 	      one of: a, |, b
+a|b 	      one of: a, b
+
+
+
